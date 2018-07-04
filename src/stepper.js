@@ -22,7 +22,7 @@
             singleStepContent: '.step-content',
             navStepBtn: '.next-back-btn',
             stepsCounter: '.step-number',
-            onStepChange: function(currentStep, nextStep, nextBtn, backBtn){},
+            onStepChange: function(currentStep, nextStep, nextBtn, backBtn, clickedEl){},
             onStepChangeEnd: function(currentStep){},
         }, options );
 
@@ -36,9 +36,10 @@
         
 
         $(stepContainer).find(settings.navStepBtn).unbind().click(function(event) {
+            var thisEl = this;
             var nextStepNumber = $(this).hasClass('next') ? settings.currentStep + 1 : settings.currentStep - 1;
 
-            settings.onStepChange(settings.currentStep, nextStepNumber, settings.navStepBtn+'.next', settings.navStepBtn+'.back');
+            settings.onStepChange(settings.currentStep, nextStepNumber, settings.navStepBtn+'.next', settings.navStepBtn+'.back', thisEl);
 
             //Step Navigation
             $(stepContainer).find(settings.singleStepContent).hide();
